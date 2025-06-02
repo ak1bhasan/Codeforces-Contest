@@ -33,18 +33,17 @@ const ll infLL = 9000000000000000000;
 
 void solve()
 {
-     int n; cin >> n;
-     vi v(n);
+    int a, b, c, d; cin >> a >> b >> c >> d;
 
-     for( int i = 0; i < n; i++ ) cin >> v[i];
-     int ans = 0, current = -1;
-     for( int i = 0; i < n; i++ ) {
-        if( v[i] > current + 1 ) {
-            ans++;
-            current = v[i];
-        }
-     }
-     cout << ans << endl;
+    int mn1 = INT_MAX, mn2 = INT_MAX;
+
+    mn1 = min( mn1, min( b, d ) );
+    mn2 = min( mn2, min( a, c ) );
+
+    if( mn1 < mn2 ) cout << "Gellyfish" << endl;
+    else if( mn2 == mn1 ) cout << "Gellyfish" << endl;
+    else cout << "Flower" << endl;
+
 }
 
 int main()
@@ -58,4 +57,13 @@ int main()
 
     return 0;
 }
+/**
+5
+1 2 3 4
+100 999 1 1
+10 20 10 30
+12 14 13 11
+998 244 353 107
+*/
+
 
