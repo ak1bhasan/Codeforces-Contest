@@ -118,26 +118,22 @@ void debug_out( T arg, const Args &... rest) {
 
 void solve()
 {
-    ll a, b; cin >> a >> b;
+    int n; cin >> n;
+    vi v1(n), v2(n);
 
-    ll k = a * b;
+    for( auto &u : v1 ) cin >> u;
 
-    if( k % 2 ) {
-        cout << k + 1 << endl;
-        return;
+    for( auto &u : v2 ) cin >> u;
+
+    int cnt = 0;
+
+    for( int i = 0; i < n; i++ ) {
+        if( v1[i] > v2[i] ) cnt += v1[i] - v2[i];
     }
 
-    if( b % 2 ) {
-        cout << -1 << endl;
-        return;
-    }
+    cout << cnt + 1 << endl;
 
-    if( a % 2 and b % 4 ) {
-        cout << -1 << endl;
-        return;
-    }
 
-    cout << k / 2 + 2 << endl;
 
 }
 

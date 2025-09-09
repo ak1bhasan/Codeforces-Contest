@@ -116,28 +116,25 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
+bool cmp( ll a, ll b )
+{
+    return a > b;
+}
+
 void solve()
 {
-    ll a, b; cin >> a >> b;
+    ll n, m; cin >> n >> m;
 
-    ll k = a * b;
+    vector<ll> v(n + 1);
+    for( int i = 1; i <= n; i++ ) cin >> v[i];
 
-    if( k % 2 ) {
-        cout << k + 1 << endl;
-        return;
+    sort( v.begin() + 1, v.end(), cmp );
+
+    ll ans = 0;
+    for( int i = 1; i <= min( n, m ); i++ ) {
+        ans += ( m - i + 1 ) * v[i];
     }
-
-    if( b % 2 ) {
-        cout << -1 << endl;
-        return;
-    }
-
-    if( a % 2 and b % 4 ) {
-        cout << -1 << endl;
-        return;
-    }
-
-    cout << k / 2 + 2 << endl;
+    cout << ans << endl;
 
 }
 
@@ -151,4 +148,13 @@ int main()
 
     return 0;
 }
+/**
+3
+3 4
+1 2 3
+3 2
+1 2 3
+1 1000
+100000
+*/
 
