@@ -116,13 +116,49 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
+void solve()
+{
+    int n; cin >> n;
 
+    vector<int> v(n);
+    set<int> st;
+
+    for( int i = 1; i <= n; i++ ) st.insert(i);
+
+    for( int i = 0; i < n; i++ ) {
+        cin >> v[i];
+        if( v[i] ) st.erase(v[i]);
+    }
+
+    if( st.size() == 1 ) {
+        for( int i = 0; i < n; i++ ) {
+            if( v[i] == 0 ) v[i] = *st.begin();
+        }
+    }
+
+    int x = n;
+    for( int i = 0; i < n; i++ ) {
+        if( v[i] != i + 1 ) break;
+        x--;
+    }
+
+    for( int i = n - 1; i >= 0; i-- ) {
+        if( v[i] != i + 1 ) break;
+        x--;
+    }
+
+    cout << max(0, x) << endl;
+
+
+}
 
 int main()
 {
     optimize();
 
+    int t; cin >> t;
 
+    while( t-- ) solve();
 
     return 0;
 }
