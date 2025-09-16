@@ -131,9 +131,9 @@ void solve()
 //    for( int i = 1; i <= n; i++ ) cout << pre[i] << " ";
 //    cout << endl;
 
-    for( int l = 1; l < n; l++ ) {
-        for( int r = l + 1; r < n; r++ ) {
-//            if( l >= n - 1 or r >= n ) continue;
+    for( int l = 1; l <= n; l++ ) {
+        for( int r = l + 1; r <= n; r++ ) {
+            if( l >= n - 1 or r >= n ) continue;
             int s1 = pre[l] % 3;
             int s2 = ( pre[r] - pre[l] ) % 3;
             int s3 = ( pre[n] - pre[r] ) % 3;

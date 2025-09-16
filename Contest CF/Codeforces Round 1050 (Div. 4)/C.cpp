@@ -123,9 +123,21 @@ void solve()
     vector< pair<ll, ll> > v(n);
     for( auto &u : v ) cin >> u.F >> u.S;
 
+    ll p = 0, s = 0, ans = 0;
+    for( auto &u : v ) {
+        int diff = u.F - p;
 
+        if( u.S == s ) {
+            ans += ( diff % 2 ? ( diff - 1 ) : diff );
+        }
+        else ans += ( diff % 2 ) ? diff : ( diff - 1 );
 
+        p = u.F;
+        s = u.S;
+    }
+    ans += m - p;
 
+    cout << ans << endl;
 }
 
 int main()
