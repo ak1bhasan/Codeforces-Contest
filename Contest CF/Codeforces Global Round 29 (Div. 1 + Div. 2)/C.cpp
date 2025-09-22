@@ -121,7 +121,14 @@ void solve()
     ll n; cin >> n;
     string s; cin >> s;
 
+    bool Found = 1;
+    for( int i = 0, j = i; i < n; i = j ) {
+        j = i + 1;
+        while( j < n && s[j] != s[j - 1] ) j++;
+        if( s[i] == '1' && ( j - i ) % 4 == 3 ) Found = 0;
+    }
 
+    cout << ( Found ? "YES" : "NO" ) << endl;
 
 }
 
