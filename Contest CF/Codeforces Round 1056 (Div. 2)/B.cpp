@@ -120,8 +120,26 @@ void solve()
 {
     int n, k; cin >> n >> k;
 
+    if( k == n * n - 1 ) {
+        cout << "NO" << endl;
+        return;
+    }
 
-
+    cout << "YES" << endl;
+    for( int i = 1; i <= n; i++ ) {
+        for( int j = 1; j <= n; j++ ) {
+            if(k) {
+                cout << "L";
+                k--;
+            }
+            else{
+                if( i == n and j == n ) cout << "L";
+                else if( i == n ) cout << "R";
+                else cout << "D";
+            }
+        }
+        cout << endl;
+    }
 }
 
 int main()
