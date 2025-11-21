@@ -129,9 +129,13 @@ void solve()
         return;
     }
 
+    ll ans = 0;
+    for( int i = 1; i < n; i++ ) {
+        ans += max( v[i], v[i - 1] );
+    }
+    ans += max( v[0], v[n - 1] );
 
-
-
+    cout << ans - *max_element(all(v)) << endl;
 }
 
 int main()
