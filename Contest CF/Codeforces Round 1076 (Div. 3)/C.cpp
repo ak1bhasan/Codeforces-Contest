@@ -134,8 +134,8 @@ void solve()
 
     while( q-- ) {
         //int sum = 0;
-        int s, e; cin >> s >> e;
-        cout << pre[e] - pre[s - 1] << " ";
+        int l, r; cin >> l >> r;
+        cout << pre[r] - pre[l - 1] << " ";
     }
     cout << endl;
 }

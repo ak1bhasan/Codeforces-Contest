@@ -123,22 +123,15 @@ void solve()
     vi v(n);
     for( auto &u : v ) cin >> u;
 
-    bool done = 0;
-
     for( int i = 0; i < n; i++ ) {
-        int mx = v[i];
-        int pos = i;
-
-        for( int j = i; j < n; j++ ) {
-            if( v[j] >= mx ) {
-                mx = v[j];
-                pos = j;
+        if( v[i] < n - i ) {
+            ll j;
+            for( j = i + 1; j < n; j++ ) {
+                if( v[j] == n - i ) break;
             }
-        }
-
-        if( pos != i ) {
-            reverse( v.begin() + i, v.begin() + pos + 1 );
-            done = 1;
+            while( i < j ) {
+                swap( v[i++], v[j--] );
+            }
             break;
         }
     }
