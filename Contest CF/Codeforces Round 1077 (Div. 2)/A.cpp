@@ -1,3 +1,4 @@
+/**
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -132,6 +133,45 @@ void solve()
     }
 
     for( int i = 1; i <= n; i++ ) cout << v[i] << " \n"[i == n];
+}
+
+int main()
+{
+    optimize();
+
+    int t; cin >> t;
+
+    while( t-- ) solve();
+
+    return 0;
+}
+*/
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef double dl;
+
+#define endl "\n"
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define MOD 1000000007
+
+void solve()
+{
+    int n; cin >> n;
+
+    vector<int> v(n + 1);
+
+    for( int i = n, boshbe = n; i >= 1; i -= 2, boshbe-- ) v[i] = boshbe;
+
+    for( int i = n - 1, boshbe = 1; i >= 1; i-= 2, boshbe++ ) v[i] = boshbe;
+
+    for( int i = 1; i <= n; i++ ) cout << v[i] << " \n"[i == n];
+
 }
 
 int main()
