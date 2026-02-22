@@ -133,7 +133,7 @@ void solve()
     int ans = 0;
     for( int i = 0; i < n; i++ ) {
         string check = s.substr( i ) + s.substr( 0, i );
-        dbg(check);
+//        dbg(check);
         ans = max( ans, Rotation( check ) );
     }
     cout << ans << endl;
