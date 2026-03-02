@@ -116,13 +116,51 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
+void solve()
+{
+    ll n, h, k; cin >> n >> h >> k;
 
+    vector<ll> v(n);
+    for( auto &u : v ) cin >> u;
+
+    ll sum = accumulate( all(v), 0LL );
+
+    ll ans = ( n + k ) * ( h / sum );
+    h %= sum;
+
+    if( h == 0 ) {
+        cout << ans - k << endl;
+        return;
+    }
+
+    vector<ll> mx(n);
+
+    for( ll i = n - 2; i >= 0; i-- ) mx[i] = max( mx[i + 1], v[i + 1] );
+
+    ll mn = LLONG_MAX;
+    for( int i = 0; i < n; i++ ) {
+        mn = min( mn, v[i] );
+        mx[i] -= mn;
+        mx[i] = max( mx[i], 0LL );
+    }
+
+    for( int i = 0; i < n; i++ ) {
+        h -= v[i];
+        ans++;
+        if( mx[i] >= h ) break;
+    }
+
+    cout << ans << endl;
+
+}
 
 int main()
 {
     optimize();
 
+    int t; cin >> t;
 
+    while( t-- ) solve();
 
     return 0;
 }
