@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
@@ -17,8 +17,6 @@ typedef double dl;
 #define umap unordered_map
 #define uset unordered_set
 
-
-
 #define PB push_back
 #define F first
 #define S second
@@ -27,31 +25,24 @@ typedef double dl;
 #define all(a) (a).begin(),(a).end()
 #define sz(x) (int)x.size()
 
-
-
 const double PI = acos(-1);
 const double eps = 1e-9;
 const int inf = 2000000000;
 const ll infLL = 9000000000000000000;
-
 
 #define MOD 1000000007
 #define mem(a,b) memset(a, b, sizeof(a) )
 #define gcd(a,b) __gcd(a,b)
 #define sqr(a) ((a) * (a))
 
-
 #define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield);
 #define file() freopen("input.txt","r",stdin);freopen("output.txt","w",stdout);
 
-
 typedef vector<int>::iterator vit;
 typedef set<int>::iterator sit;
 
-
 /// Debugger
-
 
 template < typename F, typename S >
 ostream& operator << ( ostream& os, const pair< F, S > & p ) {
@@ -116,52 +107,34 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
-ll lcm( ll a, ll b )
-{
-    return a / __gcd( a, b ) * b;
-}
-
 void solve()
 {
-    ll a, b, c, m; cin >> a >> b >> c >> m;
+    int n; cin >> n;
+    
+    vector<pair<dl, dl>> v(n);
+    for( auto &u : v ) {
+        cin >> u.F;
+        dl p; cin >> p;
+        u.S = ( 1 - p / 100.0 );
+    }
 
-    ll ab = lcm( a, b );
-    ll ac = lcm( a, c );
-    ll bc = lcm( b, c );
-    ll abc = lcm( ab, c );
+    vector<dl> dp(n);
+    dp[n - 1] = v[n - 1].F;
+    
 
-    ll A = m / a;
-    ll B = m / b;
-    ll C = m / c;
-
-    ll AB = m / ab;
-    ll AC = m / ac;
-    ll BC = m / bc;
-
-    ll ABC = m / abc;
-
-    ll A_ekla = A - AB - AC + ABC;
-    ll B_ekla = B - AB - BC + ABC;
-    ll C_ekla = C - AC - BC + ABC;
-
-    ll AB_shudhu = AB - ABC;
-    ll AC_shudhu = AC - ABC;
-    ll BC_shudhu = BC - ABC;
-
-    ll alice = 6 * A_ekla + 3 * ( AB_shudhu + AC_shudhu ) + 2 * ABC;
-    ll bob = 6 * B_ekla + 3 * ( AB_shudhu + BC_shudhu ) + 2 * ABC;
-    ll carol = 6 * C_ekla + 3 * ( AC_shudhu + BC_shudhu ) + 2 * ABC;
-
-    cout << alice << " " << bob << " " << carol << endl;
+    for( int i = n - 2; i >= 0; i-- ) {
+        dl d1 = ( v[i].S * dp[i + 1] ) + v[i].F;
+        dp[i] = max( d1, dp[i + 1] );
+    }
+    cout << fixed << setprecision(10) << dp[0] << endl;
 }
 
-int main()
-{
+int main() {
     optimize();
 
     int t; cin >> t;
 
     while( t-- ) solve();
-
+    
     return 0;
 }

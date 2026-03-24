@@ -116,43 +116,57 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
-ll lcm( ll a, ll b )
-{
-    return a / __gcd( a, b ) * b;
-}
-
 void solve()
 {
-    ll a, b, c, m; cin >> a >> b >> c >> m;
+    int n; cin >> n;
 
-    ll ab = lcm( a, b );
-    ll ac = lcm( a, c );
-    ll bc = lcm( b, c );
-    ll abc = lcm( ab, c );
+    int arr[n][n];
 
-    ll A = m / a;
-    ll B = m / b;
-    ll C = m / c;
+    map<int, int> freq;
+    for( int i = 0; i < n; i++ ) {
+        for( int j = 0; j < n; j++ ) {
+            cin >> arr[i][j];
+            freq[ arr[i][j] ]++;
+        }
+    }
 
-    ll AB = m / ab;
-    ll AC = m / ac;
-    ll BC = m / bc;
+//    bool rowEqual = 0, colEqual = 0;
+//
+//    for(int i = 0; i < n; i++){
+//        for( int j = i + 1; j < n; j++ ){
+//            bool same = 1;
+//            for( int k = 0; k < n; k++ ){
+//                if( arr[i][k] != arr[j][k] ){
+//                    same = 0;
+//                    break;
+//                }
+//            }
+//            if( same ) rowEqual = 1;
+//        }
+//    }
+//
+//    // check columns
+//    for( int i = 0; i < n; i++ ){
+//        for( int j = i + 1; j < n; j++ ){
+//            bool same = 1;
+//            for( int k = 0; k < n; k++ ){
+//                if( arr[k][i] != arr[k][j] ){
+//                    same = 0;
+//                    break;
+//                }
+//            }
+//            if( same ) colEqual = 1;
+//        }
+//    }
 
-    ll ABC = m / abc;
 
-    ll A_ekla = A - AB - AC + ABC;
-    ll B_ekla = B - AB - BC + ABC;
-    ll C_ekla = C - AC - BC + ABC;
-
-    ll AB_shudhu = AB - ABC;
-    ll AC_shudhu = AC - ABC;
-    ll BC_shudhu = BC - ABC;
-
-    ll alice = 6 * A_ekla + 3 * ( AB_shudhu + AC_shudhu ) + 2 * ABC;
-    ll bob = 6 * B_ekla + 3 * ( AB_shudhu + BC_shudhu ) + 2 * ABC;
-    ll carol = 6 * C_ekla + 3 * ( AC_shudhu + BC_shudhu ) + 2 * ABC;
-
-    cout << alice << " " << bob << " " << carol << endl;
+    for( auto &u : freq ) {
+        if( u.S > n * ( n - 1 ) ) {
+            cout << "NO" << endl;
+            return;
+        }
+    }
+    cout << "YES" << endl;
 }
 
 int main()
@@ -165,3 +179,6 @@ int main()
 
     return 0;
 }
+
+
+

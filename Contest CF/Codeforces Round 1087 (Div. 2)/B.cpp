@@ -116,43 +116,22 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
-ll lcm( ll a, ll b )
-{
-    return a / __gcd( a, b ) * b;
-}
-
 void solve()
 {
-    ll a, b, c, m; cin >> a >> b >> c >> m;
+    int n; cin >> n;
 
-    ll ab = lcm( a, b );
-    ll ac = lcm( a, c );
-    ll bc = lcm( b, c );
-    ll abc = lcm( ab, c );
+    vi v(n);
+    for( auto &u : v ) cin >> u;
 
-    ll A = m / a;
-    ll B = m / b;
-    ll C = m / c;
-
-    ll AB = m / ab;
-    ll AC = m / ac;
-    ll BC = m / bc;
-
-    ll ABC = m / abc;
-
-    ll A_ekla = A - AB - AC + ABC;
-    ll B_ekla = B - AB - BC + ABC;
-    ll C_ekla = C - AC - BC + ABC;
-
-    ll AB_shudhu = AB - ABC;
-    ll AC_shudhu = AC - ABC;
-    ll BC_shudhu = BC - ABC;
-
-    ll alice = 6 * A_ekla + 3 * ( AB_shudhu + AC_shudhu ) + 2 * ABC;
-    ll bob = 6 * B_ekla + 3 * ( AB_shudhu + BC_shudhu ) + 2 * ABC;
-    ll carol = 6 * C_ekla + 3 * ( AC_shudhu + BC_shudhu ) + 2 * ABC;
-
-    cout << alice << " " << bob << " " << carol << endl;
+    for( int i = 0; i < n; i++ ) {
+        int ai = 0, aj = 0;
+        for( int j = i + 1; j < n; j++ ) {
+            if( v[i] > v[j] ) ai++;
+            else if( v[j] > v[i] ) aj++;
+        }
+        cout << max( ai, aj ) << " ";
+    }
+    cout << endl;
 }
 
 int main()
@@ -165,3 +144,4 @@ int main()
 
     return 0;
 }
+
