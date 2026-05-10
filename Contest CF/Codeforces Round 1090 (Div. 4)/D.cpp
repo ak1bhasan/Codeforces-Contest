@@ -116,8 +116,23 @@ void debug_out( T arg, const Args &... rest) {
     debug_out(rest...);
 }
 
+ll a = 1e5;
+
 void solve()
 {
+    ll n; cin >> n;
+
+    vector<ll> v(n);
+
+    v[0] = a * ( a - 1 );
+    v[1] = a * ( a - 2 );
+
+    for( int i = 2; i < n; i++ ) {
+        v[i] = ( a - i ) * ( a - i - 1 );
+    }
+
+    for( auto &u : v ) cout << u << " ";
+    cout << endl;
 
 }
 
